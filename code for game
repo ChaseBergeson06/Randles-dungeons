@@ -1,0 +1,191 @@
+import sys
+import time
+import random
+
+# Function for typewriter effect
+def typewrite(phrase):
+    print("\033[31m", end="")  # Red text
+    for letter in phrase:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(0.02)
+    print("\033[0m", end="")  # Reset text color
+# Chapter 1
+def game_chapter1():
+    typewrite("You are a knight in a mid evil world trying to save you phone from the evil, the terrible, the scariest.... Randle!!\n")
+    time.sleep(1.5)
+    
+    typewrite("\n You begin your adventure and as you are walking to Randles dungeons you realize that you need something to protect your self from monsters from the evil group cyber patrios\n")
+    time.sleep(1.5)
+    global sword_picked
+    sword_picked = False
+    
+    valid_choices = ["yes", "no"]
+    path_choices = ["left", "right"]
+
+    # Sword picking logic
+    while True:
+        user = input("\nCongrats, you have found a sword. Will you pick it up? (yes/no): ").lower()
+        if user in valid_choices:
+            if user == "yes":
+                print("You have picked up the sword.")
+                sword_picked = True
+                break
+            elif user == "no":
+                print("You're going to regret not picking up the sword.")
+                break
+        else:
+            print("Pick one option.")
+    
+    # First monster encounter
+    if sword_picked:
+        while True:
+            try:
+                swing_count = int(input("Uh oh! The monster Jett is attacking you. How many times are you going to swing at it? (1-3): "))
+                if swing_count < 1 or swing_count > 3:
+                    print("You can only swing 3 times with this sword.")
+                else:
+                    for i in range(swing_count):
+                        print(random.choice(["Ouch", "Oof", "Ugh"]))
+                    print("Congrats, you killed the monster!")
+                    break
+            except ValueError:
+                print("Invalid input. Enter a number between 1 and 3.")
+    else:
+        print("Sword not equipped.")
+
+    # Path choice logic
+    typewrite("Now travler when moving forward you come across a two way path pick wisely\n")
+    time.sleep(1.5)
+    typewrite("If travled wrong there alies great parrel \n")
+    time.sleep(1.5)
+    
+    while True:
+        user_pick = input("\nWhat will you pick: left or right? (left/right): ").lower()
+        if user_pick in path_choices:
+            if user_pick == "right":
+                print("You fell in a whole of spikes game over restart to start again.")
+                print("Game over!!!!!\n")
+                game_chapter1()
+                break
+            elif user_pick == "left":
+                print("You have picked correctly. The gods showed mercy upon your soul.")
+                break
+        else:
+            print("Pick one option.")
+
+# Chapter 2
+def game_chapter2():
+    path_choices = ["yes", "no"]
+    typewrite("As you travilng through the dungeons you must meet with the speeker to contiune to the next part\n")
+    while True:
+        user_pick = input("\nWill you contnue: yes or no? (yes/no): ").lower()
+        if user_pick in path_choices:
+            if user_pick == "no":
+                print("your phone will never forgive you ;(.")
+                print("Game over!!!!!\n")
+                game_chapter1()
+                break
+            elif user_pick == "yes":
+                print("you are very brave")
+                break
+        else:
+            print("Pick one option.")
+        
+
+    typewrite("welcome to the next part travler hope you still have some fighting life in you to save your phone from the evil, the terrible, the scariest....Randle!!\n")
+    
+    while True:
+        user_pick = input("your faced with another hall What will you pick: left or right? (left/right): ").lower()
+        path_choices = ["left", "right"]
+        if user_pick in path_choices:
+            if user_pick == "right":
+                print("You fell in a whole of spikes. Game over. Restart to start again.")
+                print("Game over!!!!!\n")
+                game_chapter1()
+                break
+            elif user_pick == "left":
+                print("You have picked correctly.")
+                break
+        else:
+            print("Pick one option.")
+
+    # Second monster encounter
+    if sword_picked:
+        typewrite("As you continue your path, another monster has appeared. The monster is none other than Brayden the Terrible! You must defeat it! \n")
+        while True:
+            try:
+                swing_count = int(input("You're faced with Brayden the Terrible. How many times are you going to swing at it? (1-3): "))
+                if swing_count < 1 or swing_count > 3:
+                    print("You can only swing between 1 and 3 times with this sword.")
+                elif swing_count < 3:
+                    print("Brayden the Terrible has defeated you! You must start over.")
+                    game_chapter1()
+                    break
+                else:
+                    for i in range(swing_count):
+                        print(random.choice(["Ouch", "Join Cyber Patriots", "Take that!"]))
+                    print("Congrats, you killed the monster!")
+                    break
+            except ValueError:
+                print("Invalid input. Enter a number between 1 and 3.")
+
+# Final Chapter
+def last_chapter():
+    typewrite("Travler this is the last time ill be talking to you ive got you this far and i belive that you are ready to defaeat the evil, the terrible , the scariest.... Randle!!\n")
+    print("   ")
+    typewrite("You see Randles room but he put a mind jitsue on you and you now see two doors. You must pick correctly...\n")
+
+    while True:
+        user_pick = input("\nPick the right door: left or right? (left/right): ").lower()
+        path_choices = ["left", "right"]
+        if user_pick in path_choices:
+            if user_pick == "right":
+                print("That's too bad. The evil, the terrible, the scariest... Randle has defeated you.")
+                print("Game over!!!!!\n")
+                game_chapter1()
+                break
+            elif user_pick == "left":
+                typewrite("You have picked correctly. Keep moving./n")
+                break
+        else:
+            print("Pick one option.")
+
+    if sword_picked:
+        print("   ")
+        typewrite("Loud rumbling! It's the evil, the terrible, the scariest... Randle!!!/n")
+        while True:
+            try:
+                swing_count = int(input("How many times are you going to swing at it? (1-3): "))
+                if swing_count < 1 or swing_count > 3:
+                    print("You can only swing between 1 and 3 times with this sword. Try again.")
+                elif swing_count < 3:
+                    print("This sword must be swung exactly 3 times! Randle the Terrible has defeated you.")
+                    game_chapter1()
+                    break
+                else:
+                    print("Haha, you think that is going to stop me?")
+                    typewrite("The evil, the terrible, the scariest... Randle has shown his mercy on you./n")
+                    print("Randle: I'm impressed. I will grant you your phone back but on one condition: you must join Cyber Patriots.")
+                    break
+            except ValueError:
+                print("Invalid input. Enter a number between 1 and 3.")
+
+# Cyber Patriots Question
+def cyber_patriots_question():
+    while True:  # Loop until a valid input is given
+        user1 = input("\nWill you join Cyber Patriots? (yes/no): ").lower()
+        if user1 == "yes":
+            return " you have beat the game good job and Welcome to Cyber Patriots, but you can't have your phone!"
+            break
+        elif user1 == "no":
+            return "Womp womp, that's too bad. Game over."
+            game_chapter1
+            break
+        else:
+            print("Invalid choice. You must answer with 'yes' or 'no'.")
+# Start the game
+game_chapter1()
+game_chapter2()
+last_chapter()
+print(cyber_patriots_question())
